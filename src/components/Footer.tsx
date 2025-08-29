@@ -72,7 +72,7 @@ const Footer = () => {
 
         <div className="border-t border-secondary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-secondary-foreground/60 text-sm">
-            © 2024 Terje Seljevoll Maskinentreprenør. Alle rettigheter reservert.
+            © 2025 Terje Seljevoll Maskinentreprenør. Alle rettigheter reservert.
           </p>
         </div>
       </div>
