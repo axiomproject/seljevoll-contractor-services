@@ -95,7 +95,6 @@ All colors MUST be HSL.
 
   body {
       @apply bg-background text-foreground font-sans;
-      scroll-padding-top: 120px; /* Add scroll padding to account for navbar + contact info bar */
     }
 
   h1, h2, h3, h4, h5, h6 {
@@ -105,6 +104,11 @@ All colors MUST be HSL.
 
   h2 {
     @apply text-3xl md:text-4xl font-bold;
+  }
+
+  /* Add scroll margin to sections to prevent navbar from covering content */
+  section[id] {
+    scroll-margin-top: 80px;
   }
 
   h3 {
