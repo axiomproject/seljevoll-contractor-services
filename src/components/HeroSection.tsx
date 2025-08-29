@@ -38,7 +38,7 @@ const HeroSection = () => {
       ))}
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/60 to-primary/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/50" />
       
       {/* Content */}
       <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6">
