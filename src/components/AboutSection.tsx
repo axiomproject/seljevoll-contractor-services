@@ -75,16 +75,12 @@ const AboutSection = () => {
               className="bg-card rounded-lg p-8 shadow-card border border-border"
             >
               <div className="flex items-center justify-center mb-6">
-                <motion.div
-                  animate={{ rotate: [0, 10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Award className="h-12 w-12 text-primary" />
-                </motion.div>
+                <img 
+                  src="/adk.webp" 
+                  alt="ADK Sertifisert Logo" 
+                  className="h-16 w-auto invert"
+                />
               </div>
-              <h3 className="text-2xl font-bold text-center mb-4 text-foreground">
-                ADK Sertifisert
-              </h3>
               <p className="text-muted-foreground text-center leading-relaxed">
                 Med en sertifisering innenfor ADK (Anlegg, Drift og Kontroll), er vi berettiget 
                 til å arbeide med hovedledninger og også el-kabler for vann og avløp i alle dimensjoner.
