@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Maximize } from 'lucide-react';
+import { Maximize, ZoomIn, ZoomOut } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -88,17 +88,8 @@ const GallerySection = () => {
                       </div>
                     </motion.button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-5xl p-0 bg-black/90 border-border max-h-[90vh] overflow-hidden">
-                    <div className="relative w-full h-[80vh] flex items-center justify-center p-4">
-                      <motion.img 
-                        src={src} 
-                        alt="Zoomed" 
-                        className="max-w-full max-h-[calc(80vh-2rem)] object-contain"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </div>
+                  <DialogContent className="max-w-5xl p-0 bg-background border-border max-h-[90vh] overflow-hidden">
+                    <ZoomedImage src={src} />
                   </DialogContent>
                 </Dialog>
               </motion.div>
@@ -139,3 +130,110 @@ const GallerySection = () => {
 };
 
 export default GallerySection;
+
+// ZoomedImage component with zoom functionality
+interface ZoomedImageProps {
+  src: string;
+}
+
+const ZoomedImage = ({ src }: ZoomedImageProps) => {
+  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const handleZoomIn = () => {
+    setScale(prev => Math.min(prev + 0.25, 3));
+  };
+
+  const handleZoomOut = () => {
+    setScale(prev => {
+      const newScale = Math.max(prev - 0.25, 1);
+      if (newScale === 1) {
+        setPosition({ x: 0, y: 0 });
+      }
+      return newScale;
+    });
+  };
+
+  const handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (scale === 1) return;
+    
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startPosX = position.x;
+    const startPosY = position.y;
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      setPosition({
+        x: startPosX + dx,
+        y: startPosY + dy
+      });
+    };
+    
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  return (
+    <div className="relative w-full h-[80vh] overflow-hidden">
+      <div className="absolute top-4 left-4 z-10 flex gap-2">
+        <Button 
+          variant="secondary" 
+          size="icon" 
+          onClick={handleZoomIn}
+          disabled={scale >= 3}
+        >
+          <ZoomIn className="h-4 w-4" />
+        </Button>
+        <Button 
+          variant="secondary" 
+          size="icon" 
+          onClick={handleZoomOut}
+          disabled={scale <= 1}
+        >
+          <ZoomOut className="h-4 w-4" />
+        </Button>
+      </div>
+      
+      <div 
+        className="w-full h-full flex items-center justify-center p-4"
+        style={{ cursor: scale > 1 ? 'grab' : 'default' }}
+        onMouseDown={handleDragStart}
+        ref={imageRef}
+      >
+        <motion.img 
+          src={src} 
+          alt="Zoomed" 
+          className="max-w-full max-h-[calc(80vh-2rem)] object-contain"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ 
+            opacity: 1, 
+            scale: scale,
+            x: position.x,
+            y: position.y
+          }}
+          transition={{ 
+            opacity: { duration: 0.3 },
+            scale: { type: "spring", stiffness: 300, damping: 25 },
+            x: { type: "spring", stiffness: 300, damping: 25 },
+            y: { type: "spring", stiffness: 300, damping: 25 }
+          }}
+          style={{ transformOrigin: 'center' }}
+        />
+      </div>
+      
+      {scale > 1 && (
+        <div className="absolute bottom-4 left-0 right-0 text-center text-sm text-muted-foreground">
+          Dra for å flytte bildet
+        </div>
+      )}
+    </div>
+  );
+};

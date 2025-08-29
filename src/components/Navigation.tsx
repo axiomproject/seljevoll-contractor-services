@@ -27,15 +27,15 @@ const Navigation = () => {
   return (
     <>
       {/* Contact Info Bar - Always visible */}
-      <div className="hidden md:block fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-white/10">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto px-6 py-2">
-          <div className="flex items-center space-x-6">
-            <a href="tel:+4790580592" className="flex items-center text-sm text-white/90 hover:text-white transition-colors">
-              <Phone className="h-3.5 w-3.5 mr-2" strokeWidth={2} />
+          <div className="flex items-center space-x-4 md:space-x-6 justify-center md:justify-start">
+            <a href="tel:+4790580592" className="flex items-center text-xs md:text-sm text-white/90 hover:text-white transition-colors">
+              <Phone className="h-3 md:h-3.5 w-3 md:w-3.5 mr-1 md:mr-2" strokeWidth={2} />
               <span>+47 905 80 592</span>
             </a>
-            <a href="mailto:post@seljevoll.no" className="flex items-center text-sm text-white/90 hover:text-white transition-colors">
-              <Mail className="h-3.5 w-3.5 mr-2" strokeWidth={2} />
+            <a href="mailto:post@seljevoll.no" className="flex items-center text-xs md:text-sm text-white/90 hover:text-white transition-colors">
+              <Mail className="h-3 md:h-3.5 w-3 md:w-3.5 mr-1 md:mr-2" strokeWidth={2} />
               <span>t.seljevoll@online.no</span>
             </a>
           </div>
@@ -43,7 +43,7 @@ const Navigation = () => {
       </div>
       
       {/* Main Navigation */}
-      <nav className={`fixed top-9 md:top-9 left-0 right-0 z-40 transition-all duration-300 ${
+      <nav className={`fixed top-[32px] md:top-9 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
           ? 'bg-background/95 backdrop-blur-md shadow-professional border-b border-border' 
           : isMobileMenuOpen ? 'bg-background/90 backdrop-blur-sm' : 'bg-transparent'
@@ -100,6 +100,18 @@ const Navigation = () => {
               isScrolled ? '' : 'bg-background/90 backdrop-blur-sm rounded-b-lg'
             }`}>
               <div className="flex flex-col space-y-4 pt-4 px-2">
+                {/* Contact Info for Mobile */}
+                <div className="flex flex-col space-y-3 pb-3 border-b border-white/10">
+                  <a href="tel:+4790580592" className="flex items-center text-sm text-foreground/90 hover:text-primary transition-colors">
+                    <Phone className="h-3.5 w-3.5 mr-2" strokeWidth={2} />
+                    <span>+47 905 80 592</span>
+                  </a>
+                  <a href="mailto:t.seljevoll@online.no" className="flex items-center text-sm text-foreground/90 hover:text-primary transition-colors">
+                    <Mail className="h-3.5 w-3.5 mr-2" strokeWidth={2} />
+                    <span>t.seljevoll@online.no</span>
+                  </a>
+                </div>
+                
                 {labels.map((item, index) => (
                   <button
                     key={item}
