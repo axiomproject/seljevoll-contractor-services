@@ -88,12 +88,12 @@ const GallerySection = () => {
                       </div>
                     </motion.button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-5xl p-0 bg-black/90 border-border sm:max-h-[90vh] flex items-center justify-center">
-                    <div className="w-full h-full max-h-[80vh] flex items-center justify-center p-4">
+                  <DialogContent className="max-w-5xl p-0 bg-black/90 border-border max-h-[90vh] overflow-hidden">
+                    <div className="relative w-full h-[80vh] flex items-center justify-center p-4">
                       <motion.img 
                         src={src} 
                         alt="Zoomed" 
-                        className="max-w-full max-h-full object-contain"
+                        className="max-w-full max-h-[calc(80vh-2rem)] object-contain"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3 }}
