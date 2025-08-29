@@ -26,7 +26,9 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					light: 'hsl(var(--primary-light))',
+					dark: 'hsl(var(--primary-dark))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +53,20 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				construction: {
+					orange: 'hsl(var(--construction-orange))',
+					'orange-light': 'hsl(var(--construction-orange-light))',
+					yellow: 'hsl(var(--construction-yellow))'
+				},
+				earth: {
+					brown: 'hsl(var(--earth-brown))'
+				},
+				steel: {
+					gray: 'hsl(var(--steel-gray))'
+				},
+				concrete: {
+					gray: 'hsl(var(--concrete-gray))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
