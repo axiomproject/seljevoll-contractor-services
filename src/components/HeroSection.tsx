@@ -52,8 +52,8 @@ const HeroSection = () => {
         </h1>
         
         <p className="text-xl md:text-2xl mb-8 leading-relaxed font-light">
-          Digging, planning, machining lawn or other challenges.
-          <span className="block mt-2 font-semibold">We take everything.</span>
+          Graving, planering, plenbehandling eller andre utfordringer.
+          <span className="block mt-2 font-semibold">Vi tar alt.</span>
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">

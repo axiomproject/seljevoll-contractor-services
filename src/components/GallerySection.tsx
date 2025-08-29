@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Maximize } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -51,6 +52,9 @@ const GallerySection = () => {
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
+                    <div className="absolute top-2 right-2 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Maximize className="h-4 w-4 text-white" />
+                    </div>
                   </div>
                 </button>
               </DialogTrigger>
@@ -82,4 +86,4 @@ const GallerySection = () => {
   );
 };
 
-export default GallerySection; 
+export default GallerySection;
