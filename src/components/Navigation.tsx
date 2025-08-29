@@ -21,6 +21,9 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const labels = ['Hjem', 'Om oss', 'Tjenester', 'Galleri', 'Anmeldelser', 'Kontakt'];
+  const sectionIds = ['hero', 'about', 'services', 'gallery', 'reviews', 'contact'];
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
@@ -40,30 +43,26 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {['Hjem', 'Om oss', 'Tjenester', 'Kontakt'].map((item, index) => {
-              const sectionIds = ['hero', 'about', 'services', 'contact'];
-              return (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(sectionIds[index])}
-                  className={`font-medium transition-colors duration-300 hover:text-primary-light ${
-                    isScrolled ? 'text-foreground hover:text-primary' : 'text-white'
-                  }`}
-                >
-                  {item}
-                </button>
-              );
-            })}
+            {labels.map((item, index) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(sectionIds[index])}
+                className={`font-medium transition-colors duration-300 hover:text-primary-light ${
+                  isScrolled ? 'text-foreground hover:text-primary' : 'text-white'
+                }`}
+              >
+                {item}
+              </button>
+            ))}
           </div>
 
-          {/* Contact Info */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <div className={`flex items-center space-x-2 text-sm ${
-              isScrolled ? 'text-foreground' : 'text-white'
-            }`}>
-              <Phone className="h-4 w-4" />
-              <span>+47 905 80 592</span>
-            </div>
+          {/* Contact CTA */}
+          <div className="hidden lg:flex items-center">
+            <a href="tel:+4790580592">
+              <Button variant={isScrolled ? 'hero' : 'secondary'} size="sm" className="gap-2">
+                <Phone className="h-4 w-4" strokeWidth={2.25} /> Ring oss
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -73,7 +72,7 @@ const Navigation = () => {
               isScrolled ? 'text-foreground' : 'text-white'
             }`}
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMobileMenuOpen ? <X strokeWidth={2.25} className="h-6 w-6" /> : <Menu strokeWidth={2.25} className="h-6 w-6" />}
           </button>
         </div>
 
@@ -81,26 +80,22 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-white/20">
             <div className="flex flex-col space-y-4 pt-4">
-              {['Hjem', 'Om oss', 'Tjenester', 'Kontakt'].map((item, index) => {
-                const sectionIds = ['hero', 'about', 'services', 'contact'];
-                return (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(sectionIds[index])}
-                    className={`text-left font-medium transition-colors duration-300 ${
-                      isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary-light'
-                    }`}
-                  >
-                    {item}
-                  </button>
-                );
-              })}
-              <div className={`flex items-center space-x-2 text-sm pt-2 ${
-                isScrolled ? 'text-foreground' : 'text-white'
-              }`}>
-                <Phone className="h-4 w-4" />
-                <span>+47 905 80 592</span>
-              </div>
+              {labels.map((item, index) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(sectionIds[index])}
+                  className={`text-left font-medium transition-colors duration-300 ${
+                    isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-primary-light'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+              <a href="tel:+4790580592" className="pt-2">
+                <Button variant="hero" size="sm" className="w-full gap-2">
+                  <Phone className="h-4 w-4" strokeWidth={2.25} /> Ring oss
+                </Button>
+              </a>
             </div>
           </div>
         )}

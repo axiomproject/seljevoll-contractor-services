@@ -9,7 +9,7 @@ const MapSection = () => {
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        className="grayscale hover:grayscale-0 transition-all duration-500"
+        className="transition-all duration-500"
         title="T. Seljevoll Maskinentreprenør Lokasjon"
       />
     </section>
